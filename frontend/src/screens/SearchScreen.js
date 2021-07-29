@@ -41,7 +41,13 @@ export default function SearchScreen(props) {
       })
     );
   }, [category, dispatch, max, min, name, order, rating, pageNumber]);
-
+ 
+  const RemoveURIpageNumber = (the_url) => {
+    var the_arr = the_url.split('/');
+    the_arr.pop();
+    the_arr.push('1');
+    return( the_arr.join('/') );
+  }
   const getFilterUrl = (filter) => {
     const filterPage = filter.page || pageNumber;
     const filterCategory = filter.category || category;
@@ -99,7 +105,7 @@ export default function SearchScreen(props) {
                   <li key={c}>
                     <Link
                       className={c === category ? 'active' : ''}
-                      to={getFilterUrl({ category: c })}
+                      to={RemoveURIpageNumber(getFilterUrl({ category: c }))}
                     >
                       {c}
                     </Link>

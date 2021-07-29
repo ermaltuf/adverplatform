@@ -8,12 +8,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import { listTopSellers } from '../actions/userActions';
 import { Link } from 'react-router-dom';
-
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff"
+  }
+}));
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
-
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
   const userTopSellersList = useSelector((state) => state.userTopSellersList);
   const {
     loading: loadingSellers,
@@ -25,6 +35,14 @@ export default function HomeScreen() {
     dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
+
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [open, productList]);
   return (
     <div>
       <h2>Top Sellers</h2>
@@ -59,6 +77,12 @@ export default function HomeScreen() {
             {products.map((product) => (
               <Product key={product._id} product={product}></Product>
             ))}
+          </div>
+          <div>
+
+            <Backdrop className={classes.backdrop} open={open}>
+              <CircularProgress />
+            </Backdrop>
           </div>
         </>
       )}
