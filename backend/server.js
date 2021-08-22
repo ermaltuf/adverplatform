@@ -8,18 +8,30 @@ import productRouter from './routers/productRouter.js';
 import userRouter from './routers/userRouter.js';
 import orderRouter from './routers/orderRouter.js';
 import uploadRouter from './routers/uploadRouter.js';
+import { MongoClient } from 'mongodb';
 
 dotenv.config();
-
+//const connectionString = 'mongodb://storageusr:storageUsr123%24@amazona-shard-00-02.tqpjx.mongodb.net:27017/';
+const connectionString = 'mongodb+srv://storageusr:ermal1995@amazona.tqpjx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+//const client = new MongoClient(connectionString, { useNewUrlParser: true, useUnifiedTopology: true , authSource : "admin"});
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
+const mongoosePromise = mongoose.connect(connectionString , { useUnifiedTopology: true , useNewUrlParser: true },
+ (err) => {
+  if (err) {
+    console.log(err);
+} else {
+    console.log("Successful");
+}
 });
+  // client.connect(err => {
+  //   const collection = client.db("test").collection("devices");
+  //   console.log(collection);
+  //   // perform actions on the collection object
+  //   client.close();
+  // });
+
 app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
