@@ -91,5 +91,52 @@ const data = {
       description: 'high quality product',
     },
   ],
+  topbanner : [
+    {
+        category: "Electronics",
+        caption: "Electrify your friends!",
+        contentPosition: "left",
+        //items: [
+            // {
+              //     Name: "Macbook Pro",
+              //     Image: "https://source.unsplash.com/featured/?macbook"
+            // },
+            // {
+            //     Name: "iPhone",
+            //     Image: "https://source.unsplash.com/featured/?iphone"
+            // }
+       // ]
+    },
+    {
+        category: "Home Appliances",
+        caption: "Say no to manual home labour!",
+        contentPosition: "middle",
+        //items: [
+            // {
+            //     Name: "Washing Machine WX9102",
+            //     Image: "https://source.unsplash.com/featured/?washingmachine"
+            // },
+            // {
+            //     Name: "Learus Vacuum Cleaner",
+            //     Image: "https://source.unsplash.com/featured/?vacuum,cleaner"
+            // }
+        //]
+    },
+    {
+        category: "Decoratives",
+        caption: "Give style and color to your living room!",
+        contentPosition: "right",
+       // items: [
+            // {
+            //     Name: "Living Room Lamp",
+            //     Image: "https://source.unsplash.com/featured/?lamp"
+            // },
+            // {
+            //     Name: "Floral Vase",
+            //     Image: "https://source.unsplash.com/featured/?vase"
+            // }
+       // ]
+    }
+]
 };
 export default data;

@@ -31,7 +31,9 @@ import {
   userUpdateProfileReducer,
   userUpdateReducer,
 } from './reducers/userReducers';
-
+import {
+  bannerListReducer
+} from './reducers/bannerReducer';
 const initialState = {
   userSignin: {
     userInfo: localStorage.getItem('userInfo')
@@ -74,6 +76,7 @@ const reducer = combineReducers({
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
   orderSummary: orderSummaryReducer,
+  bannerList : bannerListReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
