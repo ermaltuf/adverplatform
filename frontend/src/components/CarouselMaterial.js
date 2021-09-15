@@ -45,7 +45,7 @@ function Banner(props) {
 
 
     for (let i = 0; i < mediaLength; i++) {
-        const item = props.item.Items[i];
+        const item = props.item.items[i];
 
         const media = (
             <Grid item xs={12 / totalItems} key={item.Name}>
@@ -82,58 +82,57 @@ function Banner(props) {
     )
 }
 
-const items = [
-    {
-        Name: "Electronics",
-        Caption: "Electrify your friends!",
-        contentPosition: "left",
-        Items: [
-            {
-                Name: "Macbook Pro",
-                Image: "https://source.unsplash.com/featured/?macbook"
-            },
-            {
-                Name: "iPhone",
-                Image: "https://source.unsplash.com/featured/?iphone"
-            }
-        ]
-    },
-    {
-        Name: "Home Appliances",
-        Caption: "Say no to manual home labour!",
-        contentPosition: "middle",
-        Items: [
-            {
-                Name: "Washing Machine WX9102",
-                Image: "https://source.unsplash.com/featured/?washingmachine"
-            },
-            {
-                Name: "Learus Vacuum Cleaner",
-                Image: "https://source.unsplash.com/featured/?vacuum,cleaner"
-            }
-        ]
-    },
-    {
-        Name: "Decoratives",
-        Caption: "Give style and color to your living room!",
-        contentPosition: "right",
-        Items: [
-            {
-                Name: "Living Room Lamp",
-                Image: "https://source.unsplash.com/featured/?lamp"
-            },
-            {
-                Name: "Floral Vase",
-                Image: "https://source.unsplash.com/featured/?vase"
-            }
-        ]
-    }
-]
+// const items = [
+//     {
+//         Name: "Electronics",
+//         Caption: "Electrify your friends!",
+//         contentPosition: "left",
+//         Items: [
+//             {
+//                 Name: "Macbook Pro",
+//                 Image: "https://source.unsplash.com/featured/?macbook"
+//             },
+//             {
+//                 Name: "iPhone",
+//                 Image: "https://source.unsplash.com/featured/?iphone"
+//             }
+//         ]
+//     },
+//     {
+//         Name: "Home Appliances",
+//         Caption: "Say no to manual home labour!",
+//         contentPosition: "middle",
+//         Items: [
+//             {
+//                 Name: "Washing Machine WX9102",
+//                 Image: "https://source.unsplash.com/featured/?washingmachine"
+//             },
+//             {
+//                 Name: "Learus Vacuum Cleaner",
+//                 Image: "https://source.unsplash.com/featured/?vacuum,cleaner"
+//             }
+//         ]
+//     },
+//     {
+//         Name: "Decoratives",
+//         Caption: "Give style and color to your living room!",
+//         contentPosition: "right",
+//         Items: [
+//             {
+//                 Name: "Living Room Lamp",
+//                 Image: "https://source.unsplash.com/featured/?lamp"
+//             },
+//             {
+//                 Name: "Floral Vase",
+//                 Image: "https://source.unsplash.com/featured/?vase"
+//             }
+//         ]
+//     }
+// ]
 
 class BannerExample extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             autoPlay: true,
             animation: "fade",
@@ -188,8 +187,10 @@ class BannerExample extends React.Component {
             timeout: value
         })
     }
-
     render() {
+        console.log(this.props.items);
+        const { items } = this.props; 
+
         return (
             <div style={{ marginTop: "50px", color: "#494949" }}>
                 <h2>Example: eBay&trade; style</h2>
@@ -210,16 +211,14 @@ class BannerExample extends React.Component {
                     // navButtonsProps={{style: {backgroundColor: 'cornflowerblue', borderRadius: 0}}}
                     // navButtonsWrapperProps={{style: {bottom: '0', top: 'unset', }}}
                     // indicatorContainerProps={{style: {margin: "20px"}}}
-                    // NextIcon='next'
+                    // NextIcon='next'  
                 >
                     {
-                        items.map((item, index) => {
+                    items.map((item, index) => {
                             return <Banner item={item} key={index} contentPosition={item.contentPosition} />
                         })
                     }
                 </Carousel>
-
-
                 <FormLabel component="legend">Options</FormLabel>
                 <FormControlLabel
                     control={

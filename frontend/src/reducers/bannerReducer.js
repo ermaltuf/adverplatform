@@ -11,7 +11,7 @@ import {
 
 
 export const bannerListReducer = (
-    state = { loading: true, data: [] },
+    state = { loading: true,  items: [] },
     action
   ) => {
     switch (action.type) {
@@ -20,7 +20,7 @@ export const bannerListReducer = (
       case PRODUCT_MAIN_BANNER_SUCCESS:
         return {
           loading: false,
-          items: action.payload,
+          items: action.payload.topBanner,
         };
       case PRODUCT_MAIN_BANNER_FAIL:
         return { loading: false, error: action.payload };

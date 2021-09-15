@@ -15,8 +15,8 @@ export const listBannerItems = () => async (dispatch) => {
       type: PRODUCT_MAIN_BANNER_REQUEST,
     });
     try {
-      const { items } = await Axios.get(`/api/banner/topbanner`);
-      dispatch({ type: PRODUCT_MAIN_BANNER_SUCCESS, payload: items });
+      const { data } = await Axios.get(`/api/banner/topbanner`);
+      dispatch({ type: PRODUCT_MAIN_BANNER_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: PRODUCT_MAIN_BANNER_FAIL, payload: error.message });
     }
