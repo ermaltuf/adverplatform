@@ -76,7 +76,7 @@ export default function HomeScreen() {
               <BannerExample items={item} key={item._id} ></BannerExample>
 
             ))} */}
-            <BannerExample items={[items]} loading={newload}/>
+              <BannerExample items={items} loading={newload}/>
         </>
       )}
 
