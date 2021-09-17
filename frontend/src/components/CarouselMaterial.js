@@ -2,6 +2,8 @@ import React from 'react';
 import Carousel from "react-material-ui-carousel"
 import autoBind from "auto-bind"
 import '../style/Example.scss';
+import LoadingBox from './LoadingBox';
+
 
 import {
     Card,
@@ -33,7 +35,7 @@ function Banner(props) {
                 </Typography>
 
                 <Typography className="Caption">
-                    {props.item.Caption}
+                    {props.item.caption}
                 </Typography>
 
                 <Button variant="outlined" className="ViewButton">
@@ -189,21 +191,21 @@ class BannerExample extends React.Component {
     }
     render() {
         console.log(this.props.items);
-        const { items } = this.props; 
-
+        const { items , newload } = this.props; 
+    
         return (
             <div style={{ marginTop: "50px", color: "#494949" }}>
                 <h2>Example: eBay&trade; style</h2>
 
                 <Carousel
                     className="Example"
-                    autoPlay={this.state.autoPlay}
-                    animation={this.state.animation}
-                    indicators={this.state.indicators}
-                    timeout={this.state.timeout}
-                    cycleNavigation={this.state.cycleNavigation}
-                    navButtonsAlwaysVisible={this.state.navButtonsAlwaysVisible}
-                    navButtonsAlwaysInvisible={this.state.navButtonsAlwaysInvisible}
+                    autoPlay={true}
+                    animation={"fade"}
+                    indicators={true}
+                    timeout={500}
+                    cycleNavigation={false}
+                    navButtonsAlwaysVisible={false}
+                    navButtonsAlwaysInvisible={false}
                     next={(now, previous) => console.log(`Next User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
                     prev={(now, previous) => console.log(`Prev User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
                     onChange={(now, previous) => console.log(`OnChange User Callback: Now displaying child${now}. Previously displayed child${previous}`)}
@@ -213,13 +215,21 @@ class BannerExample extends React.Component {
                     // indicatorContainerProps={{style: {margin: "20px"}}}
                     // NextIcon='next'  
                 >
-                    {
-                    items.map((item, index) => {
-                            return <Banner item={item} key={index} contentPosition={item.contentPosition} />
-                        })
+                    
+                    {(newload) ?  (
+                                 <LoadingBox></LoadingBox>
+                    ) :
+                    
+                    (items.map((item) => {
+                            return <Banner item={item} key={item._id} contentPosition={item.contentPosition} />
+                        })) 
+
+                     
                     }
+
+                        {/* <Banner item={items}  contentPosition={items.contentPosition} /> */}
                 </Carousel>
-                <FormLabel component="legend">Options</FormLabel>
+                {/* <FormLabel component="legend">Options</FormLabel>
                 <FormControlLabel
                     control={
                         <Checkbox onChange={this.toggleAutoPlay} checked={this.state.autoPlay} value="autoplay"
@@ -283,7 +293,7 @@ class BannerExample extends React.Component {
                             />
                         </div>
                     }
-                />
+                /> */}
 
             </div>
 

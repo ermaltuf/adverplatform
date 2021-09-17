@@ -25,7 +25,7 @@ export default function HomeScreen() {
   const productList = useSelector((state) => state.productList);
   const bannerItems = useSelector((state) => state.bannerList);
   const { loading, error, products } = productList;
-  const { newload , items } = bannerItems; 
+  const { newload, items } = bannerItems;
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const userTopSellersList = useSelector((state) => state.userTopSellersList);
@@ -36,7 +36,7 @@ export default function HomeScreen() {
   } = userTopSellersList;
 
   useEffect(() => {
-    dispatch(listBannerItems({}));
+    dispatch(listBannerItems());
     dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
@@ -53,14 +53,14 @@ export default function HomeScreen() {
   return (
     <div>
       <h2>Top Sellers</h2>
-      {/* {loadingSellers ? (
+      {loadingSellers ? (
         <LoadingBox></LoadingBox>
       ) : errorSellers ? (
         <MessageBox variant="danger">{errorSellers}</MessageBox>
       ) : (
         <>
           {sellers.length === 0 && <MessageBox>No Seller Found</MessageBox>}
-          <Carousel showArrows autoPlay showThumbs={false}>
+          {/* <Carousel showArrows autoPlay showThumbs={false}>
             {sellers.map((seller) => (
               <div key={seller._id}>
                 <Link to={`/seller/${seller._id}`}>
@@ -69,17 +69,21 @@ export default function HomeScreen() {
                 </Link>
               </div>
             ))}
-          </Carousel>
+          </Carousel> */}
+          {/* {
+            items.map((item) => (
+
+              <BannerExample items={item} key={item._id} ></BannerExample>
+
+            ))} */}
+            <BannerExample items={[items]} loading={newload}/>
         </>
-      )} */}
+      )}
 
-       <BannerExample items={[items]}/>  
+      {/* <BannerExample items={[items]}/>   */}
 
-      {/* {
-           items.map((item, index) => {
-                            return <BannerExample items={item} key={index} />
-                        })
-       } */}
+
+
       <h2>Featured Products</h2>
       {loading ? (
         <LoadingBox></LoadingBox>

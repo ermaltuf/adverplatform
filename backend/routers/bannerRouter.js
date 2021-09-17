@@ -19,7 +19,7 @@ bannerRouter.get(
 bannerRouter.get(
     '/topbanner',
     expressAsyncHandler(async(req ,res) => {
-        const banner = await Banner.findAll();
+        const banner = await Banner.find();
         if(banner){
             return res.status(200).send({message : "The top banner is ready" , topBanner : banner });
         }else{
